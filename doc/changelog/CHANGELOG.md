@@ -18,7 +18,7 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **`call-publish` job in `main.yaml`**: opts into template v0.20.0's
   new `publish-worker.yaml` reusable workflow (template#232 / template#233).
   On tag push, each of the 4 matrix variants publishes a Docker image
-  to `ghcr.io/ycpss91255-docker/ros2_distro:<tag>-<entry-name>`, and the
+  to `ghcr.io/ycpss91255-lab/ros2_distro:<tag>-<entry-name>`, and the
   default variant (`humble-desktop-full`) additionally publishes
   `:latest-humble-desktop-full`. Auth via GITHUB_TOKEN (no extra
   secrets); `target: devel`.
@@ -38,7 +38,7 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Template subtree upgraded to `v0.20.0` (was `v0.19.0`).
   `main.yaml` reusable-workflow `@tag` references bumped accordingly.
 - README.md aligned to the template framework reference applied in
-  ycpss91255-docker/ros1_bridge#63 (merge 148c411): added CI status
+  ycpss91255-lab/ros1_bridge#63 (merge 148c411): added CI status
   badge under the H1 title, promoted the `> **TL;DR**` blockquote into
   a `## TL;DR` H2, added a `## Overview` H2 explaining the two-repo
   consolidation rationale, extended the TOC to include the new
