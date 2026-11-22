@@ -212,6 +212,7 @@ ENV BATS_LIB_PATH="/usr/lib/bats"
 # Smoke test (shared tests from template + repo-specific tests)
 COPY .base/test/smoke/ /smoke_test/
 COPY test/smoke/ /smoke_test/
+COPY config/shell/bashrc /smoke_test/bashrc
 
 ARG USER
 USER "${USER}"
