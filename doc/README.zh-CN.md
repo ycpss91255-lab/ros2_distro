@@ -1,6 +1,6 @@
 # ros2_distro -- ROS 2 多 distro Docker 环境
 
-[![CI](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
+[![CI](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](../LICENSE)
 
 **[English](../README.md)** | **[繁體中文](README.zh-TW.md)** | **[简体中文](README.zh-CN.md)** | **[日本語](README.ja.md)**
 
@@ -41,10 +41,10 @@
 - **Smoke Test**：build 时自动跑 Bats 测试验证环境正确性
 - **Docker Compose**：一个 `compose.yaml` 管理所有 target
 - **自动检测**：`setup.sh` 自动检测 UID/GID/workspace，生成 `.env`
-- **模块化设置**：shell config 通过 [template](https://github.com/ycpss91255-docker/base) subtree 管理
+- **模块化设置**：shell config 通过 [template](https://github.com/ycpss91255-lab/base) subtree 管理
 - **X11 转发**：支持 GUI 应用程序（RViz2、Terminator 等）
 
-> **注意**：此镜像使用 `osrf/ros`，仅支持 **x86_64**。如需 ARM/Raspberry Pi 支持，请使用 [ros2_humble](https://github.com/ycpss91255-docker/ros2_humble)。
+> **注意**：此镜像使用 `osrf/ros`，仅支持 **x86_64**。如需 ARM/Raspberry Pi 支持，请使用 [ros2_humble](https://github.com/ycpss91255-lab/ros2_humble)。
 
 ## 快速开始
 
@@ -113,7 +113,7 @@ docker compose --profile runtime run --rm runtime
 
 ```bash
 git subtree add --prefix=docker/osrf_ros2_humble \
-    https://github.com/ycpss91255-docker/osrf_ros2_humble.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros2_humble.git main --squash
 ```
 
 添加后的目录结构示例：
@@ -157,7 +157,7 @@ cd docker/osrf_ros2_humble
 
 ```bash
 git subtree pull --prefix=docker/osrf_ros2_humble \
-    https://github.com/ycpss91255-docker/osrf_ros2_humble.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros2_humble.git main --squash
 ```
 
 > **注意事项**：
@@ -318,5 +318,5 @@ osrf_ros2_humble/
 
 ```bash
 git subtree pull --prefix=template \
-    https://github.com/ycpss91255-docker/base.git v1.4.0 --squash
+    https://github.com/ycpss91255-lab/base.git v1.4.0 --squash
 ```

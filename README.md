@@ -1,8 +1,8 @@
 # ros2_distro -- ROS 2 Multi-distro Docker Environment
 
-[![CI](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
+[![CI](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml) [![License](https://img.shields.io/badge/License-Apache--2.0-blue?style=flat-square)](./LICENSE)
 
-[![CI](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-docker/ros2_distro/actions/workflows/main.yaml)
+[![CI](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml/badge.svg)](https://github.com/ycpss91255-lab/ros2_distro/actions/workflows/main.yaml)
 
 One-command ROS 2 containerized dev environment. Single Dockerfile, single `BASE_IMAGE` ARG to switch between Humble / Jazzy / Iron and `ros:` (headless) / `osrf/ros:` (desktop / desktop-full) at build time.
 
@@ -59,7 +59,7 @@ noble's deb822 apt sources and the `gazebo` (humble classic) vs `gz`
 - **Smoke Test**: Bats tests run automatically during build; distro- and variant-agnostic (GUI tests skip cleanly on `ros-base` / `ros-core`; humble's `gazebo` and jazzy's `gz` are both detected).
 - **Docker Compose**: single `compose.yaml` manages all targets.
 - **Auto-detection**: `setup.sh` auto-detects UID/GID/workspace, generates `.env`.
-- **Modular config**: shell config managed via [template](https://github.com/ycpss91255-docker/base) subtree.
+- **Modular config**: shell config managed via [template](https://github.com/ycpss91255-lab/base) subtree.
 - **X11 forwarding**: supports GUI applications when using a desktop variant.
 
 > **Note**: `osrf/ros:*` variants ship amd64 binaries only. For arm64 (Jetson, Raspberry Pi), pick a `ros:` variant -- that registry publishes both architectures.
@@ -115,16 +115,16 @@ ARGs in sync.
 
 ### Persisting the override
 
-Either pass `--build-arg` per `./build.sh` invocation, or persist the
-override in `setup.conf` so subsequent builds pick it up automatically:
+Persist the override in `setup.toml` so every build picks it up:
 
-```ini
-[build]
-arg_4 = BASE_IMAGE=osrf/ros:jazzy-desktop-full-noble
+```toml
+[[build.args]]
+key = "BASE_IMAGE"
+value = "osrf/ros:jazzy-desktop-full-noble"
 ```
 
-The `[build] arg_*` slots flow into `compose.yaml`'s `build.args` via
-`setup.sh`. Use the TUI editor to manage them: `./setup_tui.sh build`.
+The `[[build.args]]` entries flow into `compose.yaml`'s `build.args` via
+`setup.sh`. Use the TUI editor to manage them: `just docker setup-tui`.
 
 ## Usage
 
@@ -175,7 +175,7 @@ This repo can be embedded into another project via `git subtree`, letting the pr
 
 ```bash
 git subtree add --prefix=docker/osrf_ros2_humble \
-    https://github.com/ycpss91255-docker/osrf_ros2_humble.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros2_humble.git main --squash
 ```
 
 Example directory structure after adding:
@@ -219,7 +219,7 @@ When the subtree sits at `my_robot_project/docker/osrf_ros2_humble/`:
 
 ```bash
 git subtree pull --prefix=docker/osrf_ros2_humble \
-    https://github.com/ycpss91255-docker/osrf_ros2_humble.git main --squash
+    https://github.com/ycpss91255-lab/osrf_ros2_humble.git main --squash
 ```
 
 > **Notes**:
@@ -400,7 +400,7 @@ ros2_distro/
 ├── Makefile -> .base/script/docker/Makefile   # Symlink
 ├── .env.example                              # IMAGE_NAME fallback
 ├── .hadolint.yaml                            # Hadolint ignore rules
-├── setup.conf                                # Repo override (selects BASE_IMAGE etc.)
+├── setup.toml                                # Repo override (selects BASE_IMAGE etc.)
 ├── script/
 │   └── entrypoint.sh                         # Container entrypoint
 ├── doc/                                      # Translated READMEs + TEST + CHANGELOG
@@ -420,5 +420,5 @@ ros2_distro/
 
 ```bash
 git subtree pull --prefix=template \
-    https://github.com/ycpss91255-docker/base.git v1.4.0 --squash
+    https://github.com/ycpss91255-lab/base.git v1.4.0 --squash
 ```
