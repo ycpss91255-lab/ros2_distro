@@ -35,6 +35,7 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   failing -- no hard dependency on GHCR.
 
 ### Changed
+- `main` 已啟用 merge queue（ycpss91255-lab/.github#67）：PR 以 `gh pr merge <n> --merge` 加入佇列，由 merge_group 事件的 CI 驗證後合併。
 - Template subtree upgraded to `v0.20.0` (was `v0.19.0`).
   `main.yaml` reusable-workflow `@tag` references bumped accordingly.
 - README.md aligned to the template framework reference applied in
